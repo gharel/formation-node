@@ -118,10 +118,16 @@ Tests:       3 passed, 3 total
 
 ## Astuce : Mise à jour automatique
 
+Ajoute la ligne `"watch"` dans `package.json` :
+
+```json
+"watch": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watch"
+```
+
 Pour relancer les tests à chaque modification :
 
 ```bash
-npx jest --watch
+npm run watch
 ```
 
 ---
