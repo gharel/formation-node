@@ -1,0 +1,18 @@
+:root { font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #0b1020; color: #e7e9ee; }
+.container { max-width: 900px; margin: 0 auto; padding: 24px; }
+.card { background:#131a32; border:1px solid #1f294a; border-radius:16px; padding:16px; }
+.row { display:flex; gap:12px; align-items:center; }
+input, textarea { width:100%; background:#0f152b; color:#e7e9ee; border:1px solid #243056; border-radius:10px; padding:10px; }
+button { background:#3a66ff; color:white; border:none; border-radius:10px; padding:10px 14px; cursor:pointer; }
+button.secondary { background:#25325a; }
+button.danger { background:#b0333b; }
+ul { list-style:none; padding:0; margin:0; }
+li + li { margin-top:10px; }
+.badge { font-size:12px; padding:2px 8px; background:#25325a; border-radius:999px; }
+.header { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.grid { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+@media (max-width: 780px) { .grid { grid-template-columns: 1fr; } }
+.small { opacity:.8; font-size:13px; }
+hr { border: none; height: 1px; background: #1f294a; margin: 12px 0; }
