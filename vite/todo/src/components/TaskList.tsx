@@ -3,7 +3,7 @@ import TaskItem from "./TaskItem";
 
 type Props = {
   tasks: Task[];
-  onToggleDone: (id: Task["id"], done: boolean) => Promise<void> | void;
+  onToggleDone: (id: Task["id"], completed: boolean) => Promise<void> | void;
   onDelete: (id: Task["id"]) => Promise<void> | void;
   onSave: (id: Task["id"], patch: Partial<Task>) => Promise<void> | void;
 };

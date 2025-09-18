@@ -18,8 +18,8 @@ export default function App() {
     try {
       const data = await api.listTasks();
       const sorted = [...data].sort((a, b) => {
-        const ta = a.createdAt ? Date.parse(a.createdAt) : 0;
-        const tb = b.createdAt ? Date.parse(b.createdAt) : 0;
+        const ta = a.id ? Number(a.id) : 0;
+        const tb = b.id ? Number(b.id) : 0;
         if (ta !== tb) return tb - ta;
         return String(b.id).localeCompare(String(a.id));
       });
@@ -38,9 +38,9 @@ export default function App() {
     await refresh();
   }
 
-  async function toggleDone(id: Task["id"], done: boolean) {
-    await api.updateTask(id, { done });
-    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, done } : t)));
+  async function toggleDone(id: Task["id"], completed: boolean) {
+    await api.updateTask(id, { completed });
+    setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, completed } : t)));
   }
 
   async function savePatch(id: Task["id"], patch: Partial<Task>) {
@@ -55,12 +55,12 @@ export default function App() {
 
   const filtered = useMemo(() => {
     const byFilter = tasks.filter((t) =>
-      filter === "all" ? true : filter === "done" ? t.done : !t.done
+      filter === "all" ? true : filter === "done" ? t.completed : !t.completed
     );
     const q = query.trim().toLowerCase();
     if (!q) return byFilter;
     return byFilter.filter((t) =>
-      [t.title, t.description ?? "", String(t.id)].some((s) => s.toLowerCase().includes(q))
+      [t.title, String(t.id)].some((s) => s.toLowerCase().includes(q))
     );
   }, [tasks, filter, query]);
 
@@ -73,7 +73,7 @@ export default function App() {
 
       <div className="card" style={{ marginBottom: 16 }}>
         <div className="row">
-          <input placeholder="Recherche (titre, desc, id)" value={query} onChange={(e) => setQuery(e.target.value)} />
+          <input placeholder="Recherche (titre, id)" value={query} onChange={(e) => setQuery(e.target.value)} />
           <select value={filter} onChange={(e) => setFilter(e.target.value as any)}>
             <option value="all">Toutes</option>
             <option value="open">Ouvertes</option>

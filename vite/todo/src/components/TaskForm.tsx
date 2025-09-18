@@ -7,7 +7,6 @@ type Props = {
 
 export default function TaskForm({ onCreate }: Props) {
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -15,9 +14,8 @@ export default function TaskForm({ onCreate }: Props) {
     if (!title.trim()) return;
     setLoading(true);
     try {
-      await onCreate({ title: title.trim(), description: description.trim() || undefined, done: false });
+      await onCreate({ title: title.trim(), completed: false });
       setTitle("");
-      setDescription("");
     } finally {
       setLoading(false);
     }
@@ -34,11 +32,6 @@ export default function TaskForm({ onCreate }: Props) {
           placeholder="Titre"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-        />
-        <input
-          placeholder="Description (optionnel)"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
         />
       </div>
       <div style={{ marginTop: 12 }} className="row">

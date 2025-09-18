@@ -1,11 +1,8 @@
 export type Task = {
   id: number | string;
   title: string;
-  description?: string;
-  done: boolean;
-  createdAt?: string;
-  updatedAt?: string;
+  completed?: boolean;
 };
 
-export type CreateTask = Omit<Task, "id" | "createdAt" | "updatedAt">;
-export type UpdateTask = Partial<Omit<Task, "id" | "createdAt">>;
+export type CreateTask = Omit<Task, "id">;
+export type UpdateTask = Partial<Omit<Task, "id">>;
